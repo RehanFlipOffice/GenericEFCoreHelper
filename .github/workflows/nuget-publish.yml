@@ -28,10 +28,10 @@ jobs:
       run: dotnet build --configuration Release --no-restore
 
     - name: List test DLLs
-      run: ls -la GenericEFCoreHelper.Tests/bin/Debug/net9.0/
+      run: ls -la GenericEFCoreHelper.Tests/bin/Release/net9.0/
 
     - name: Run tests
-      run: dotnet test GenericEFCoreHelper.Tests/GenericEFCoreHelper.Tests.csproj --no-build --verbosity normal
+      run: dotnet test GenericEFCoreHelper.Tests/GenericEFCoreHelper.Tests.csproj --configuration Release --no-build --verbosity normal
 
     - name: Pack
       if: success()
