@@ -27,15 +27,16 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
 
-    - name: List test DLLs
-      run: ls -la GenericEFCoreHelper.Tests/bin/Release/net9.0/
-
     - name: Run tests
       run: dotnet test GenericEFCoreHelper.Tests/GenericEFCoreHelper.Tests.csproj --configuration Release --no-build --verbosity normal
 
     - name: Pack
       if: success()
       run: dotnet pack --configuration Release --no-build
+
+    - name: List package files
+      if: success()
+      run: ls -la bin/Release
 
     - name: Publish to NuGet
       if: success()
