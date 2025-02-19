@@ -32,14 +32,14 @@ jobs:
 
     - name: Pack
       if: success()
-      run: dotnet pack --configuration Release --no-build
+      run: dotnet pack --configuration Release --no-build --output ./nuget
 
     - name: List package files
       if: success()
-      run: ls -la bin/Release
+      run: ls -la ./nuget
 
     - name: Publish to NuGet
       if: success()
       env:
         NUGET_API_KEY: ${{ secrets.GENERICEFCOREHELPER_APIKEY }}
-      run: dotnet nuget push bin/Release/*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push ./nuget/*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
