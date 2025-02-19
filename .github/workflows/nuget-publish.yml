@@ -28,18 +28,15 @@ jobs:
       run: dotnet build --configuration Release --no-restore
 
     - name: Run tests
-      run: dotnet test GenericEFCoreHelper.Tests/GenericEFCoreHelper.Tests.csproj --configuration Release --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal
 
     - name: Pack
-      if: success()
       run: dotnet pack --configuration Release --no-build --output ./nuget
 
     - name: List package files
-      if: success()
       run: ls -la ./nuget
 
     - name: Publish to NuGet
-      if: success()
       env:
         NUGET_API_KEY: ${{ secrets.GENERICEFCOREHELPER_APIKEY }}
       run: dotnet nuget push ./nuget/*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
