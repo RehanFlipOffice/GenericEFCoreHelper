@@ -40,7 +40,7 @@ jobs:
 
     - name: Log masked API key
       if: success()
-      run: echo "API Key fetched: ${NUGET_API_KEY:0:4}****"
+      run: echo "API Key fetched: ${{ secrets.GEFCOREHELPER_APIKEY:0:4 }}****"
       env:
         NUGET_API_KEY: ${{ secrets.GEFCOREHELPER_APIKEY }}
 
