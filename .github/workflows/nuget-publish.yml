@@ -46,7 +46,9 @@ jobs:
       if: success()
       env:
         NUGET_API_KEY: ${{ secrets.GEFCOREHELPER_APIKEY }}
-      run: echo "API Key fetched: ${{ secrets.GEFCOREHELPER_APIKEY:0:4 }}****"
+      run: |
+        MASKED_KEY="${NUGET_API_KEY:0:4}****"
+        echo "API Key fetched: $MASKED_KEY"
 
     - name: Publish to NuGet
       if: success()
