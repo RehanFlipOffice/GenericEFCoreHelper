@@ -38,13 +38,9 @@ jobs:
       if: success()
       run: ls -la ./nuget
 
-    - name: Log masked API key
-      if: success()
-      run: echo "API Key fetched: ${NUGET_API_KEY:0:4}****"
-
     - name: Publish to NuGet
       if: success()
       env:
-        NUGET_API_KEY: ${{ secrets.GENERICEFCOREHELPER_APIKEY }}
+        NUGET_API_KEY: ${{ secrets.GEFCOREHELPER_APIKEY }}
       run: dotnet nuget push ./nuget/*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
 
