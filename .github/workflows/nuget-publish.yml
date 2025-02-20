@@ -41,6 +41,6 @@ jobs:
     - name: Publish to NuGet
       if: success()
       env:
-        NUGET_API_KEY: ${{ secrets.GENERICEFCOREHELPER_APIKEY }}
+        NUGET_API_KEY: ${{ secrets.GEFCOREHELPER_APIKEY }}
       run: dotnet nuget push ./nuget/*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
 
