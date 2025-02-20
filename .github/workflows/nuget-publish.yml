@@ -8,6 +8,11 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  packages: write
+  # Add other permissions as needed
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -38,14 +43,8 @@ jobs:
       if: success()
       run: ls -la ./nuget
 
-    - name: Log masked API key
-      if: success()
-      env:
-        NUGET_API_KEY: ${{ secrets.GEFCOREHELPER_APIKEY }}
-      run: echo "API Key fetched: ${NUGET_API_KEY:0:4}****"
-
     - name: Publish to NuGet
       if: success()
       env:
         NUGET_API_KEY: ${{ secrets.GEFCOREHELPER_APIKEY }}
-      run: dotnet nuget push ./nuget/*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json 
+      run: dotnet nuget push ./nuget/*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
