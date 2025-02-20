@@ -1,0 +1,50 @@
+name: Publish NuGet Package
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Run tests
+      run: dotnet test --configuration Release --no-build --verbosity normal
+
+    - name: Pack
+      if: success()
+      run: dotnet pack --configuration Release --no-build --output ./nuget
+
+    - name: List package files
+      if: success()
+      run: ls -la ./nuget
+
+    - name: Log masked API key
+      if: success()
+      run: echo "API Key fetched: ${NUGET_API_KEY:0:4}****"
+
+    - name: Publish to NuGet
+      if: success()
+      env:
+        NUGET_API_KEY: ${{ secrets.GENERICEFCOREHELPER_APIKEY }}
+      run: dotnet nuget push ./nuget/*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
+
