@@ -35,15 +35,15 @@ jobs:
       run: dotnet test --configuration Release --no-build --verbosity normal
 
     - name: Pack
-      if: success()
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: dotnet pack --configuration Release --no-build --output ./nuget
 
     - name: List package files
-      if: success()
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: ls -la ./nuget
 
     - name: Log masked API key
-      if: success()
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       env:
         NUGET_API_KEY: ${{ secrets.GEFCOREHELPER_APIKEY }}
       run: |
@@ -51,7 +51,7 @@ jobs:
         echo "API Key fetched: $MASKED_KEY"
 
     - name: Publish to NuGet
-      if: success()
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       env:
         NUGET_API_KEY: ${{ secrets.GEFCOREHELPER_APIKEY }}
       run: dotnet nuget push ./nuget/*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
