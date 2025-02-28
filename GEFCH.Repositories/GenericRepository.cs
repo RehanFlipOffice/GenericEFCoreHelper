@@ -1,9 +1,9 @@
-﻿using GenericEFCoreHelper.IRepos;
-using GenericEFCoreHelper.Models;
+﻿using GEFCH.Core;
+using GEFCH.IRepositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace GenericEFCoreHelper.Repos
+namespace GEFCH.Repositories
 {
     /// <summary>
     /// A generic repository class that provides basic CRUD operations for any entity type.

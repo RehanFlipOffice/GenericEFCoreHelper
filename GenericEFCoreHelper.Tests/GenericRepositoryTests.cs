@@ -1,5 +1,5 @@
-using GenericEFCoreHelper.Models;
-using GenericEFCoreHelper.Repos;
+using GEFCH.Core;
+using GEFCH.Repositories;
 using GenericEFCoreHelper.Tests.DBContext;
 using GenericEFCoreHelper.Tests.Models;
 using Microsoft.EntityFrameworkCore;

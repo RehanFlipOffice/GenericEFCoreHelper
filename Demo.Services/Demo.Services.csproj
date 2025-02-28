@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Demo.Core\Demo.Core.csproj" />
+    <ProjectReference Include="..\GenericEFCoreHelper\GenericEFCoreHelper.csproj" />
   </ItemGroup>
 
 </Project>

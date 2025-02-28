@@ -22,5 +22,6 @@ namespace Demo.Services.DBContext
 
         // Define DbSets for your entities
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Department> Departments { get; set; }
     }
 }

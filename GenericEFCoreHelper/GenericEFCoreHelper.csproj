@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>GenericEFCoreHelper</PackageId>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Authors>Mohammed Rehan Javed</Authors>
     <Company>MRJaved</Company>
     <Description>A helper library for Entity Framework Core.</Description>
@@ -17,6 +17,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GEFCH.Core\GEFCH.Core.csproj" />
+    <ProjectReference Include="..\GEFCH.IRepositories\GEFCH.IRepositories.csproj" />
+    <ProjectReference Include="..\GEFCH.Repositories\GEFCH.Repositories.csproj" />
   </ItemGroup>
 
   <ItemGroup>
