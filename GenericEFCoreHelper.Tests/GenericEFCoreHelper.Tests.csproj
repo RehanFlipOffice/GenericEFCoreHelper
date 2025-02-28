@@ -17,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GEFCH.Core\GEFCH.Core.csproj" />
+    <ProjectReference Include="..\GEFCH.IRepositories\GEFCH.IRepositories.csproj" />
+    <ProjectReference Include="..\GEFCH.Repositories\GEFCH.Repositories.csproj" />
     <ProjectReference Include="..\GenericEFCoreHelper\GenericEFCoreHelper.csproj" />
   </ItemGroup>
 

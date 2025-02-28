@@ -1,5 +1,5 @@
 ﻿using Demo.Core.Entities;
-using GenericEFCoreHelper.Models;
+using GEFCH.Core;
 using System.Linq.Expressions;
 
 namespace Demo.Services.IServices

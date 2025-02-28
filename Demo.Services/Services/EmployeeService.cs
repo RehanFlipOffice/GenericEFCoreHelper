@@ -1,8 +1,8 @@
 ﻿using Demo.Core.Entities;
 using Demo.Services.DBContext;
 using Demo.Services.IServices;
-using GenericEFCoreHelper.IRepos;
-using GenericEFCoreHelper.Models;
+using GEFCH.Core;
+using GEFCH.IRepositories;
 using System.Linq.Expressions;
 
 namespace Demo.Services.Services

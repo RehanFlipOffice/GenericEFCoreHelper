@@ -26,18 +26,26 @@ jobs:
         dotnet-version: '9.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore GenericEFCoreHelper/GenericEFCoreHelper.csproj
+      run: dotnet restore
 
     - name: Build
-      run: dotnet build GenericEFCoreHelper/GenericEFCoreHelper.csproj --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore
 
     - name: Run tests
       run: dotnet test --configuration Release --no-build --verbosity normal
 
-    - name: Pack
+    - name: Pack GEFCH.IRepositories
+      if: success()
+      run: dotnet pack GEFCH.IRepositories/GEFCH.IRepositories.csproj --configuration Release --no-build --output ./nuget
+
+    - name: Pack GEFCH.Repositories
+      if: success()
+      run: dotnet pack GEFCH.Repositories/GEFCH.Repositories.csproj --configuration Release --no-build --output ./nuget
+
+    - name: Pack GenericEFCoreHelper
       if: success()
       run: dotnet pack GenericEFCoreHelper/GenericEFCoreHelper.csproj --configuration Release --no-build --output ./nuget
-      
+
     - name: List package files
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: ls -la ./nuget

@@ -1,4 +1,4 @@
-﻿namespace GenericEFCoreHelper.Models
+﻿namespace GEFCH.Core
 {
     /// <summary>
     /// Represents a request for data in a DataTable format.
