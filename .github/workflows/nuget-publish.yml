@@ -26,23 +26,15 @@ jobs:
         dotnet-version: '9.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore GenericEFCoreHelper/GenericEFCoreHelper.csproj
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build GenericEFCoreHelper/GenericEFCoreHelper.csproj --configuration Release --no-restore
 
     - name: Run tests
       run: dotnet test --configuration Release --no-build --verbosity normal
 
-    - name: Pack GEFCH.IRepositories
-      if: success()
-      run: dotnet pack GEFCH.IRepositories/GEFCH.IRepositories.csproj --configuration Release --no-build --output ./nuget
-
-    - name: Pack GEFCH.Repositories
-      if: success()
-      run: dotnet pack GEFCH.Repositories/GEFCH.Repositories.csproj --configuration Release --no-build --output ./nuget
-
-    - name: Pack GenericEFCoreHelper
+    - name: Pack
       if: success()
       run: dotnet pack GenericEFCoreHelper/GenericEFCoreHelper.csproj --configuration Release --no-build --output ./nuget
 
@@ -63,3 +55,4 @@ jobs:
       env:
         NUGET_API_KEY: ${{ secrets.GEFCOREHELPER_APIKEY }}
       run: dotnet nuget push ./nuget/*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
+
