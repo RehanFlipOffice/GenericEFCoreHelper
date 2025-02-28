@@ -27,7 +27,9 @@ public static class ServiceRegister
         // Configure Entity Framework Core 
         var connectionString = configuration["ConnectionStrings:DemoWebAppConnectionString"] ?? throw new InvalidOperationException("Connection string 'DemoWebAppConnectionString' not found."); services.AddDbContext(options => options.UseSqlServer(connectionString), ServiceLifetime.Singleton);
         // Register Repositories
-        services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
+        services.AddGenericEFCHelperRepository();
+        //Also we can register the lifetime of the instance
+        //services.AddGenericEFCHelperRepository(ServiceLifetime.Scoped);
 
         services.AddTransient<IEmployeeService, EmployeeService>();
     }
